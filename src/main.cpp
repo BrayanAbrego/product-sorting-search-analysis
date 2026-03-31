@@ -4,6 +4,7 @@
 #include <cstdlib>
 #include <ctime>
 #include <algorithm>
+#include <chrono>
 
 using namespace std;
 
@@ -68,7 +69,15 @@ int main() {
 
     
 // ORDENAR POR PRECIO (QuickSort)
+auto inicio = chrono::high_resolution_clock::now();
+
 quickSortPrecio(productos, 0, productos.size() - 1);
+
+auto fin = chrono::high_resolution_clock::now();
+
+chrono::duration<double, milli> duracion = fin - inicio;
+
+cout << "\nTiempo QuickSort (precio): " << duracion.count() << " ms\n";
 
     cout << "\n=== ORDENADOS POR PRECIO ===\n";
     for (const auto& p : productos) {
