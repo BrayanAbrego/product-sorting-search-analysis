@@ -27,31 +27,7 @@ g++ main.cpp -o main
 
 ---
 
-## Tecnologías
-- Lenguaje: **C++**
-- Compilador: `g++` o equivalente
-- Control de versiones: **Git / GitHub**
 
----
-
-## Cómo compilar y ejecutar
-
-1. Abre tu terminal en la carpeta `src/`.
-2. Compila el programa:
-```bash
-g++ main.cpp -o main
-
-
----
-
-## Tecnologías
-- Lenguaje: **C++**
-- Compilador: `g++` o equivalente
-- Control de versiones: **Git / GitHub**
-
----
-
-## Cómo compilar y ejecutar
 
 1. Abre tu terminal en la carpeta `src/`.
 2. Compila el programa:
