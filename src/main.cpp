@@ -8,7 +8,9 @@
 
 using namespace std;
 
-// Estructura del producto
+// ==========================
+// Estructura del Producto
+// ==========================
 struct Producto {
     int id;
     string nombre;
@@ -17,6 +19,10 @@ struct Producto {
     int stock;
     double calificacion;
 };
+
+// ==========================
+// QuickSort por precio
+// ==========================
 void quickSortPrecio(vector<Producto>& arr, int low, int high) {
     if (low < high) {
         double pivot = arr[high].precio;
@@ -36,8 +42,33 @@ void quickSortPrecio(vector<Producto>& arr, int low, int high) {
         quickSortPrecio(arr, pi + 1, high);
     }
 }
-int main() {
 
+// ==========================
+// Búsqueda binaria por ID
+// ==========================
+int busquedaBinaria(const vector<Producto>& arr, int objetivo) {
+    int izquierda = 0;
+    int derecha = arr.size() - 1;
+
+    while (izquierda <= derecha) {
+        int medio = (izquierda + derecha) / 2;
+
+        if (arr[medio].id == objetivo)
+            return medio;
+
+        if (arr[medio].id < objetivo)
+            izquierda = medio + 1;
+        else
+            derecha = medio - 1;
+    }
+
+    return -1;
+}
+
+// ==========================
+// Main
+// ==========================
+int main() {
     vector<Producto> productos;
 
     string nombres[] = {"Laptop", "Camisa", "Libro", "Celular", "Mesa", "Audifonos"};
@@ -45,46 +76,52 @@ int main() {
 
     srand(time(0));
 
-    // Crear 50 productos
+    // 🔹 Crear 50 productos aleatorios
     for (int i = 1; i <= 50; i++) {
         Producto p;
-
         p.id = i;
         p.nombre = nombres[rand() % 6] + " " + to_string(i);
         p.precio = 10 + rand() % 500;
         p.categoria = categorias[rand() % 4];
         p.stock = rand() % 100;
-
-        // Calificación decimal
-        p.calificacion = 1.0 + (rand() % 40) / 10.0;
-
+        p.calificacion = 1.0 + (rand() % 40) / 10.0; // Rating entre 1.0 y 5.0
         productos.push_back(p);
     }
 
-    // Mostrar productos
+    // 🔹 Mostrar productos originales
     cout << "===== LISTA DE PRODUCTOS =====\n\n";
     for (const auto& p : productos) {
-        cout << p.nombre << " | $" << p.precio << " | Rating: " << p.calificacion << endl;
+        cout << "ID: " << p.id
+             << " | " << p.nombre
+             << " | $" << p.precio
+             << " | Rating: " << p.calificacion
+             << endl;
     }
 
-    
-// ORDENAR POR PRECIO (QuickSort)
-auto inicio = chrono::high_resolution_clock::now();
+    // ==========================
+    // ORDENAR POR ID (para búsqueda binaria)
+    // ==========================
+    sort(productos.begin(), productos.end(), [](Producto a, Producto b) {
+        return a.id < b.id;
+    });
 
-quickSortPrecio(productos, 0, productos.size() - 1);
+    // ==========================
+    // ORDENAR POR PRECIO (QuickSort)
+    // ==========================
+    auto inicio = chrono::high_resolution_clock::now();
+    quickSortPrecio(productos, 0, productos.size() - 1);
+    auto fin = chrono::high_resolution_clock::now();
+    chrono::duration<double, milli> duracion = fin - inicio;
 
-auto fin = chrono::high_resolution_clock::now();
-
-chrono::duration<double, milli> duracion = fin - inicio;
-
-cout << "\nTiempo QuickSort (precio): " << duracion.count() << " ms\n";
-
-    cout << "\n=== ORDENADOS POR PRECIO ===\n";
+    cout << "\n=== ORDENADOS POR PRECIO (QuickSort) ===\n";
     for (const auto& p : productos) {
         cout << p.nombre << " - $" << p.precio << endl;
     }
+    cout << "Tiempo QuickSort (precio): " << duracion.count() << " ms\n";
 
-    // ORDENAR POR CALIFICACION
+    // ==========================
+    // ORDENAR POR CALIFICACION (Sort con lambda)
+    // ==========================
     sort(productos.begin(), productos.end(), [](Producto a, Producto b) {
         return a.calificacion > b.calificacion;
     });
@@ -93,6 +130,24 @@ cout << "\nTiempo QuickSort (precio): " << duracion.count() << " ms\n";
     for (const auto& p : productos) {
         cout << p.nombre << " - Rating: " << p.calificacion << endl;
     }
+
+    // ==========================
+    // BÚSQUEDA BINARIA POR ID
+    // ==========================
+    int idBuscado = 10; // Cambia este valor para probar otros IDs
+    auto inicioBusqueda = chrono::high_resolution_clock::now();
+    int posicion = busquedaBinaria(productos, idBuscado);
+    auto finBusqueda = chrono::high_resolution_clock::now();
+    chrono::duration<double, milli> tiempoBusqueda = finBusqueda - inicioBusqueda;
+
+    if (posicion != -1) {
+        cout << "\nProducto encontrado: " << productos[posicion].nombre
+             << " | ID: " << productos[posicion].id << endl;
+    } else {
+        cout << "\nProducto NO encontrado" << endl;
+    }
+
+    cout << "Tiempo de búsqueda: " << tiempoBusqueda.count() << " ms\n";
 
     return 0;
 }
