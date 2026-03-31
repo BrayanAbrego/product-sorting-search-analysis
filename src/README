@@ -27,9 +27,11 @@ g++ main.cpp -o main
 
 ---
 
-
-
-1. Abre tu terminal en la carpeta `src/`.
-2. Compila el programa:
-```bash
-g++ main.cpp -o main
+El programa generará 50 productos aleatorios, los mostrará en consola, los ordenará por precio y calificación, y realizará una búsqueda binaria por ID.
+Autor
+Brayan Abrego
+Notas
+Todos los productos generados tienen ID único.
+La búsqueda binaria requiere que el arreglo esté ordenado por ID.
+Los tiempos de ejecución se muestran en milisegundos usando chrono.
+Para un proyecto más avanzado, se podrían agregar búsquedas por nombre con subcadenas o almacenar productos en archivos externos.
