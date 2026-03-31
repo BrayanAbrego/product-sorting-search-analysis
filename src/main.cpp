@@ -16,7 +16,25 @@ struct Producto {
     int stock;
     double calificacion;
 };
+void quickSortPrecio(vector<Producto>& arr, int low, int high) {
+    if (low < high) {
+        double pivot = arr[high].precio;
+        int i = low - 1;
 
+        for (int j = low; j < high; j++) {
+            if (arr[j].precio < pivot) {
+                i++;
+                swap(arr[i], arr[j]);
+            }
+        }
+
+        swap(arr[i + 1], arr[high]);
+        int pi = i + 1;
+
+        quickSortPrecio(arr, low, pi - 1);
+        quickSortPrecio(arr, pi + 1, high);
+    }
+}
 int main() {
 
     vector<Producto> productos;
@@ -48,10 +66,9 @@ int main() {
         cout << p.nombre << " | $" << p.precio << " | Rating: " << p.calificacion << endl;
     }
 
-    // ORDENAR POR PRECIO
-    sort(productos.begin(), productos.end(), [](Producto a, Producto b) {
-        return a.precio < b.precio;
-    });
+    
+// ORDENAR POR PRECIO (QuickSort)
+quickSortPrecio(productos, 0, productos.size() - 1);
 
     cout << "\n=== ORDENADOS POR PRECIO ===\n";
     for (const auto& p : productos) {
