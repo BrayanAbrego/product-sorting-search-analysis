@@ -1,0 +1,59 @@
+# Gestión de Productos - Ordenamiento y Búsqueda
+
+## Descripción
+Este proyecto corresponde al **Parcial 2** de la materia.  
+Simula la gestión de un catálogo de productos para una tienda en línea, incluyendo:
+
+- Generación de **productos de prueba** con atributos como ID, nombre, precio, categoría, stock y calificación promedio.  
+- **Ordenamiento de productos** por precio (ascendente) y calificación promedio (descendente) usando algoritmos como QuickSort y `sort()` de C++.  
+- **Búsqueda de productos** por ID usando **Búsqueda Binaria**.  
+
+El objetivo es analizar el rendimiento de distintos algoritmos de ordenamiento y búsqueda sobre datos reales.
+
+---
+## Tecnologías
+- Lenguaje: **C++**
+- Compilador: `g++` o equivalente
+- Control de versiones: **Git / GitHub**
+
+---
+
+## Cómo compilar y ejecutar
+
+1. Abre tu terminal en la carpeta `src/`.
+2. Compila el programa:
+```bash
+g++ main.cpp -o main
+
+---
+
+## Tecnologías
+- Lenguaje: **C++**
+- Compilador: `g++` o equivalente
+- Control de versiones: **Git / GitHub**
+
+---
+
+## Cómo compilar y ejecutar
+
+1. Abre tu terminal en la carpeta `src/`.
+2. Compila el programa:
+```bash
+g++ main.cpp -o main
+
+
+---
+
+## Tecnologías
+- Lenguaje: **C++**
+- Compilador: `g++` o equivalente
+- Control de versiones: **Git / GitHub**
+
+---
+
+## Cómo compilar y ejecutar
+
+1. Abre tu terminal en la carpeta `src/`.
+2. Compila el programa:
+```bash
+g++ main.cpp -o main
